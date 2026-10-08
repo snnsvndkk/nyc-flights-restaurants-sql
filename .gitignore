@@ -1,0 +1,16 @@
+# Raw downloaded datasets - re-create them with scripts/download_data.ps1
+data/raw/
+
+# Local output / scratch
+*.log
+*.tmp
+/output/
+
+# Editor and OS noise
+.vs/
+.vscode/
+*.suo
+*.user
+Thumbs.db
+Desktop.ini
+.DS_Store
