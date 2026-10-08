@@ -35,15 +35,23 @@ function Get-SqlcmdPath {
 #   -C  trust the instance's self-signed certificate (the ODBC sqlcmd encrypts by default)
 #   -b  exit with a non-zero code on a SQL error
 #   -I  QUOTED_IDENTIFIER ON, same as SSMS
+#   -W  trim trailing spaces from result columns
+#   -v  sqlcmd scripting variables, referenced in the .sql file as $(Name)
 function Invoke-SqlFile {
     param(
         [Parameter(Mandatory)] [string] $ServerInstance,
         [Parameter(Mandatory)] [string] $Path,
-        [string] $Database = 'master'
+        [string] $Database = 'master',
+        [hashtable] $Variables = @{}
     )
     $sqlcmd = Get-SqlcmdPath
+    $arguments = @('-S', $ServerInstance, '-E', '-C', '-b', '-I', '-W', '-d', $Database, '-i', $Path)
+    foreach ($name in $Variables.Keys) {
+        $arguments += @('-v', "$name=$($Variables[$name])")
+    }
+
     Write-Host "  sqlcmd -i $(Split-Path -Leaf $Path)" -ForegroundColor DarkGray
-    & $sqlcmd -S $ServerInstance -E -C -b -I -d $Database -i $Path
+    & $sqlcmd @arguments
     if ($LASTEXITCODE -ne 0) {
         throw "sqlcmd failed (exit code $LASTEXITCODE) while running $Path"
     }
