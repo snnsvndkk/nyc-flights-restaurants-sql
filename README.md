@@ -65,6 +65,9 @@ Airways still exists in it.
 
 ### Attribution and license
 
+The code in this repository (SQL and PowerShell) is released under the [MIT License](LICENSE).
+The datasets are not part of the repository and keep their own terms:
+
 - Airport, airline and route data from [OpenFlights](https://openflights.org/data). The OpenFlights
   Airport, Airline and Route Databases are made available under the
   [Open Database License (ODbL) v1.0](https://opendatacommons.org/licenses/odbl/1-0/). Any rights
@@ -589,6 +592,7 @@ VERIFICATION PASSED: 22 of 22 checks passed.
 ```text
 .
 ├── README.md
+├── LICENSE                    MIT license for the code
 ├── data/raw/                  downloaded files (git-ignored)
 ├── scripts/
 │   ├── common.ps1             shared helpers
