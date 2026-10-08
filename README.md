@@ -234,7 +234,7 @@ window afterwards so `sqlcmd` is on the PATH.
 **2. Get the project**
 
 ```powershell
-git clone <repository-url>
+git clone https://github.com/snnsvndkk/nyc-flights-restaurants-sql.git
 cd nyc-flights-restaurants-sql
 ```
 
